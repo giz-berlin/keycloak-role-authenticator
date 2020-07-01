@@ -1,5 +1,3 @@
-
-
 AuthenticationFlowError = Java.type("org.keycloak.authentication.AuthenticationFlowError");
 
  function authenticate(context) {
@@ -24,7 +22,7 @@ AuthenticationFlowError = Java.type("org.keycloak.authentication.AuthenticationF
 
     LOG.info("Denied authentication for user '" + username + "' without mandatory role '" + MANDATORY_ROLE + "' for client '" + client.getName() + "'");
     return denyAccess(context, mandatoryRole);
- }
+}
 
 function denyAccess(context, mandatoryRole) {
     var formBuilder = context.form();
@@ -36,4 +34,4 @@ function denyAccess(context, mandatoryRole) {
         .setAttribute('description', description[0])
         .createForm('denied-auth.ftl');
     return context.failure(AuthenticationFlowError.INVALID_USER, form);
- }
+}
