@@ -1,6 +1,6 @@
 AuthenticationFlowError = Java.type("org.keycloak.authentication.AuthenticationFlowError");
 
- function authenticate(context) {
+function authenticate(context) {
     var MANDATORY_ROLE = 'feature:authenticate';
     var username = user ? user.username : "anonymous";
 
