@@ -10,7 +10,7 @@ In contrast to the built-in `User Role Authenticator` this authenticator does no
 
 ### Dependencies
 
-To install this module, you need to place the generated jar-file to Keycloak deployments. For the official Docker containers, the Keycloak deployments are located in `/opt/jboss/keycloak/standalone/deployments`.
+To install this module, you need to place the [generated jar-file](https://rechenknecht.net/giz/keycloak/role-authenticator/-/jobs/artifacts/master/download?job=build-jar) to Keycloak deployments. For the official Docker containers, the Keycloak deployments are located in `/opt/jboss/keycloak/standalone/deployments`.
 
 Furthermore, you have to use the additional templates defined in [our sample-theme](sample-theme). For installation instructions of the theme, please refer [to the theme Readme](sample-theme/Readme.md).
 
