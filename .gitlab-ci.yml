@@ -1,0 +1,16 @@
+default:
+  image: alpine:3.13
+
+stages:
+  - build
+
+build-jar:
+  stage: build
+  before_script:
+    - apk add --update zip
+  script:
+    - zip -r role-authenticator.jar role-authenticator/*
+  artifacts:
+    paths:
+      - role-authenticator.jar
+    expire_in: 1 month
