@@ -9,7 +9,8 @@ build-jar:
   before_script:
     - apk add --update zip
   script:
-    - zip -r role-authenticator.jar role-authenticator/*
+    - cd role-authenticator
+    - zip -r ../role-authenticator.jar ./*
   artifacts:
     paths:
       - role-authenticator.jar
