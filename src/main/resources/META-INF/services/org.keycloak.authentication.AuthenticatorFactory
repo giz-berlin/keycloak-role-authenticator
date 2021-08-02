@@ -1,0 +1,2 @@
+berlin.giz.keycloak.roleauthenticator.RequiredRoleAuthenticatorFactory
+berlin.giz.keycloak.roleauthenticator.RequiredRoleDirectGrantAuthenticatorFactory
