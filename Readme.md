@@ -5,7 +5,7 @@
 This simple module allows authenticating for a Keycloak role before handing over the authentication flow back to a client. For example, you can allow access to an application only for a single role. 
 It is inspired by [`auth-require-role-authenticator`](https://github.com/thomasdarimont/keycloak-extension-playground/tree/master/auth-require-role-extension).
 
-In contrast to the built-in `User Role Authenticator` this authenticator does not require you to create an own flow for every client which might have a different user set. This module allows you to add one role per client and assign users to those specific roles while having only central authentication flows. Additionally, with this module you can set a specific error message per client to let your users know, why they are not able to login.
+In contrast to the built-in `User Role Authenticator` this authenticator does not require you to create an own flow for every client which might have a different user set. This module allows you to add one role per client and assign users to those specific roles while having only central authentication flows. Additionally, with this module you can set a specific error message per client to let your users know why they are not able to login.
 
 ## Installation
 
@@ -39,8 +39,14 @@ If you are using external identity providers, it is very important to check the 
 
 ## Usage
 
-To require a role when authenticating for a client, you need to add the role `feature:authenticate` to a client. Only if this role exists, this modules will take action.
+Before you can use the authenticator, you need to configure it. On the Keycloak authentication flow page, click on `Actions` and `Configure`. By default, the required role is `feature:authenticate`.
+
+![role required configuration](docs/configuration.png)
+
+Then if this role exists on a client, this module will take action. If the role does not exist, the module will just succeed.
 
 For all users, which should get access to such client, you need to assign them the role.
 
-You can set a unique access denied message to the role `feature:authenticate` by adding an attribute `deniedMessage` to it, which will be shown when a user is missing this specific role to use the client.
+You can set a unique access denied message to the role `feature:authenticate` by adding an attribute `deniedMessage` to it, which will be shown when a user is missing this specific role to use the client. The following screen is presented to the user:
+
+![failed authentication](docs/failed-login.png)
