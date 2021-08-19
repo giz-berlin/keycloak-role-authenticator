@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+}
+
+configurations {
+    bundleLib
+}
+
+group 'berlin.giz.keycloak'
+version '1.0'
+
+ext {
+    keycloakVersion = '15.0.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.keycloak', name: 'keycloak-services', version: keycloakVersion
+    compile group: 'org.keycloak', name: 'keycloak-server-spi', version: keycloakVersion
+    compile group: 'org.keycloak', name: 'keycloak-server-spi-private', version: keycloakVersion
+
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    from {
+        configurations.bundleLib.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}

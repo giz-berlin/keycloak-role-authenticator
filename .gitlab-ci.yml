@@ -1,17 +1,14 @@
 default:
-  image: alpine:3.13
+  image: gradle:6.8-jdk11
 
 stages:
   - build
 
 build-jar:
   stage: build
-  before_script:
-    - apk add --update zip
   script:
-    - cd role-authenticator
-    - zip -r ../role-authenticator.jar ./*
+    - gradle jar
   artifacts:
     paths:
-      - role-authenticator.jar
+      - build/libs/*.jar
     expire_in: 1 month

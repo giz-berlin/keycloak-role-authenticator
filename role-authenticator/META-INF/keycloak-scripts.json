@@ -1,9 +1,0 @@
-{
-    "authenticators": [
-        {
-            "name": "Required role authenticator",
-            "fileName": "requiredRoleAuthenticator.js",
-            "description": "Requires that users have the clients role to access the site."
-        }
-    ]
-}
