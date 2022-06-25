@@ -15,11 +15,6 @@ public class RequiredRoleDirectGrantAuthenticatorFactory extends RequiredRoleAut
     }
 
     @Override
-    public AuthenticationExecutionModel.Requirement[] getRequirementChoices() {
-        return new AuthenticationExecutionModel.Requirement[0];
-    }
-
-    @Override
     public Authenticator create(KeycloakSession session) {
         return ROLE_AUTHENTICATOR;
     }
