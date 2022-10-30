@@ -7,7 +7,7 @@ configurations {
 }
 
 group 'berlin.giz.keycloak'
-version '1.0.3'
+version '1.0.4'
 
 ext {
     keycloakVersion = '19.0.3'
