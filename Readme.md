@@ -33,8 +33,6 @@ If you are using external identity providers, it is very important to check the 
 
 ![Post login flow, needed for external Idp providers](docs/post-login-flow.png)
 
-*In this flow, it is very important to use the `Browser Redirect/Refresh` after our `Required Role Authenticator` as you might encounter errors otherwise.*
-
 ⚠ If you use any other flows, make sure you don't need to include the `Required Role Authenticator` there as well.
 
 ## Usage
