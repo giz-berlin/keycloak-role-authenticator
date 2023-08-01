@@ -18,9 +18,9 @@ repositories {
 }
 
 dependencies {
-    compile group: 'org.keycloak', name: 'keycloak-services', version: keycloakVersion
-    compile group: 'org.keycloak', name: 'keycloak-server-spi', version: keycloakVersion
-    compile group: 'org.keycloak', name: 'keycloak-server-spi-private', version: keycloakVersion
+    implementation "org.keycloak:keycloak-services:$keycloakVersion"
+    implementation "org.keycloak:keycloak-server-spi:$keycloakVersion"
+    implementation "org.keycloak:keycloak-server-spi-private:$keycloakVersion"
 
     compileOnly 'org.projectlombok:lombok:1.18.12'
 
