@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
 configurations {
@@ -15,6 +16,38 @@ ext {
 
 repositories {
     mavenCentral()
+    maven {
+        url "https://gitlab.desy.de/api/v4/projects/7797/packages/maven"
+        name "GitLab"
+        credentials(HttpHeaderCredentials) {
+            name = 'Job-Token'
+            value = System.getenv()['CI_JOB_TOKEN']
+        }
+        authentication {
+            header(HttpHeaderAuthentication)
+        }
+    }
+}
+
+publishing {
+    publications {
+        library(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url "https://gitlab.desy.de/api/v4/projects/7797/packages/maven"
+            name "GitLab"
+            credentials(HttpHeaderCredentials) {
+                name = 'Job-Token'
+                value = System.getenv()['CI_JOB_TOKEN']
+            }
+            authentication {
+                header(HttpHeaderAuthentication)
+            }
+        }
+   }
 }
 
 dependencies {
