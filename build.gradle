@@ -7,10 +7,10 @@ configurations {
 }
 
 group 'berlin.giz.keycloak'
-version '1.0.7'
+version '1.0.8'
 
 ext {
-    keycloakVersion = '21.1.1'
+    keycloakVersion = '22.0.1'
 }
 
 repositories {
@@ -18,9 +18,9 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'org.keycloak', name: 'keycloak-services', version: keycloakVersion
-    implementation group: 'org.keycloak', name: 'keycloak-server-spi', version: keycloakVersion
-    implementation group: 'org.keycloak', name: 'keycloak-server-spi-private', version: keycloakVersion
+    implementation "org.keycloak:keycloak-services:$keycloakVersion"
+    implementation "org.keycloak:keycloak-server-spi:$keycloakVersion"
+    implementation "org.keycloak:keycloak-server-spi-private:$keycloakVersion"
 }
 
 test {
