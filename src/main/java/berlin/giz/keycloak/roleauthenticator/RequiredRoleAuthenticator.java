@@ -2,8 +2,11 @@ package berlin.giz.keycloak.roleauthenticator;
 
 import org.jboss.logging.Logger;
 import org.keycloak.authentication.AuthenticationFlowContext;
+import org.keycloak.authentication.AuthenticationFlowError;
 import org.keycloak.authentication.Authenticator;
 import org.keycloak.events.Errors;
+import org.keycloak.events.EventBuilder;
+import org.keycloak.events.EventType;
 import org.keycloak.forms.login.LoginFormsProvider;
 import org.keycloak.models.*;
 import org.keycloak.services.messages.Messages;
@@ -60,9 +63,17 @@ public class RequiredRoleAuthenticator implements Authenticator {
         }
 
         LOGGER.infof("Authentication for user %s on client %s denied as mandatory role %s is missing", user.getUsername(), client.getClientId(), requiredRoleName);
-        // Generates a LOGIN_ERROR event that will be logged in the admin UI if configured.
-        // As the email event listener is activated by default, this will also send an email to the user trying to log in.
-        context.getEvent().user(user).error(Errors.NOT_ALLOWED);
+        
+        // Register new event which can be viewed in the admin console for auditing purposes.
+        // While LOGIN_ERROR would technically be more appropriate, this would lead to mails
+        // being sent to the users when the mail event listener is active (similar to when a
+        // wrong password is entered).
+        new EventBuilder(context.getRealm(), context.getSession(), context.getConnection())
+                .event(EventType.CUSTOM_REQUIRED_ACTION_ERROR)
+                .client(client)
+                .user(user)
+                .detail("requiredRole", requiredRoleName)
+                .error("User is missing required role");
 
         String deniedMessage = requiredRole.getFirstAttribute(DENIED_MESSAGE_ATTRIBUTE_KEY);
         if (deniedMessage == null || deniedMessage.isEmpty()) {

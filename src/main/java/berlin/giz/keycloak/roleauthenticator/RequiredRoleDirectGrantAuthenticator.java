@@ -22,6 +22,6 @@ public class RequiredRoleDirectGrantAuthenticator extends RequiredRoleAuthentica
                 .entity(errorRepresentation)
                 .type(MediaType.APPLICATION_JSON_TYPE)
                 .build();
-        context.failure(AuthenticationFlowError.INVALID_USER, errorResponse);
+        context.failure(AuthenticationFlowError.ACCESS_DENIED, errorResponse);
     }
 }
